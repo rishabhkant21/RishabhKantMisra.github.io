@@ -15,6 +15,7 @@ body {
     font-family:'Arial',sans-serif;
     background:#f7f7f7;
     color:#222;
+    overflow-x:hidden;
 }
 a {
     text-decoration:none;
@@ -22,30 +23,69 @@ a {
 }
 
 /* Navigation */
-nav {
-    position:fixed;
-    top:10px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:15px;
-    background:rgba(255,255,255,0.95);
-    padding:10px 20px;
-    border-radius:30px;
-    z-index:1000;
-    flex-wrap:wrap;
-    justify-content:center;
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.95);
+    padding: 10px 20px;
+    z-index: 1000;
 }
-nav a {
-    padding:8px 15px;
-    background:#002855;
-    color:#fff;
-    border-radius:20px;
-    transition:0.3s;
-    font-weight:bold;
+.nav .brand {
+    font-weight: bold;
+    color: #002855;
+    font-size: 1.2rem;
 }
-nav a:hover {
-    background:#0056b3;
+.nav-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-links li a {
+    padding: 8px 15px;
+    background: #002855;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.nav-links li a:hover {
+    background: #0056b3;
+}
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    color: #002855;
+  }
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    display: none;
+  }
+  .nav.expanded .nav-links {
+    display: flex;
+  }
 }
 
 /* Sections vertical layout */
@@ -56,7 +96,7 @@ nav a:hover {
 }
 section {
     width: 100%;
-    padding: 80px 20px 40px 20px;
+    padding: 100px 20px 40px 20px;
     display:flex;
     flex-direction:column;
     position:relative;
@@ -139,6 +179,7 @@ section {
     padding:20px;
     border-radius:15px;
     display:flex;
+    align-items:flex-start;
     gap:15px;
     flex:1 1 300px;
     min-width:280px;
@@ -153,19 +194,31 @@ section {
     height:60px;
     object-fit:contain;
     border-radius:5px;
+    flex-shrink:0;
+}
+#experience .job div {
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
 }
 #experience .job div h3 {
     font-size:1.2rem;
-    margin-bottom:5px;
+    margin:0 0 5px 0;
+    color:#002855;
 }
 #experience .job div h4 {
     font-weight:normal;
-    font-size:1rem;
+    font-size:0.95rem;
     color:#555;
-    margin-bottom:10px;
+    margin:0 0 10px 0;
 }
 #experience .job div ul {
-    padding-left:20px;
+    margin:0;
+    padding-left:18px;
+    line-height:1.4;
+}
+#experience .job div ul li {
+    margin-bottom:6px;
 }
 
 /* Certifications */
@@ -254,27 +307,38 @@ section {
     background:#0056b3;
 }
 
-/* Responsive */
-@media (max-width:1024px){
-    #about img { width:140px; height:140px; }
-    #experience .job { flex-basis:90%; }
-    #certifications .cert { min-width:180px; }
-    #projects .project-card { max-width:90%; }
-}
+/* Responsive tweaks */
 @media (max-width:600px){
-    nav { flex-direction:column; top:0; padding:10px; }
-    .section-header { display:none; }
-    #experience .job { flex-direction:column; align-items:center; text-align:center; }
+    .section-header {
+        font-size:1.5rem;
+        margin-bottom:1.5rem;
+    }
+    #experience .job {
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+    #experience .job img {
+        margin-bottom:10px;
+    }
+    #experience .job div ul {
+        padding-left:0;
+        list-style-position:inside;
+    }
 }
 </style>
 </head>
 <body>
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#experience">Professional Experience</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#projects">Projects</a>
+<nav class="nav">
+  <div class="brand">Rishabh</div>
+  <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
 </nav>
 
 <div class="sections">
@@ -389,5 +453,13 @@ section {
 </section>
 
 </div>
+
+<script>
+  document.querySelector('.nav-toggle')
+    .addEventListener('click', function(){
+      document.querySelector('.nav').classList.toggle('expanded');
+    });
+</script>
+
 </body>
 </html>
