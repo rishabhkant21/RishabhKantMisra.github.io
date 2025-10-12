@@ -8,35 +8,26 @@
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 body{font-family:'Arial',sans-serif;overflow-x:hidden;padding-top:80px;color:#222;position:relative;}
 
-/* Animated gradient background */
-body::before{
-  content:'';
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;z-index:-3;
-  background:linear-gradient(270deg,#f7f7f7,#e0e0e0,#f7f7f7);
-  background-size:600% 600%;
-  animation:gradientBG 20s ease infinite;
-}
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
+/* Background gradient */
+body{background:linear-gradient(135deg,#002855,#0056b3);}
 
-/* Floating shapes */
-.floating-shape{
-  position:fixed; border-radius:50%; z-index:-2; opacity:0.2;
-  animation:float 15s linear infinite;
+/* Floating ball */
+.floating-ball{
+  position:fixed;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  top:20%;
+  left:50%;
+  transform:translate(-50%,0);
+  animation:float 8s ease-in-out infinite alternate;
+  z-index:-1;
 }
 @keyframes float{
-  0%{transform:translateY(0) translateX(0) rotate(0deg);}
-  50%{transform:translateY(-50px) translateX(30px) rotate(180deg);}
-  100%{transform:translateY(0) translateX(0) rotate(360deg);}
+  0%{transform:translate(-50%,0);}
+  100%{transform:translate(-50%,30px);}
 }
-.floating-shape:nth-child(1){top:10%; left:5%; width:60px; height:60px; animation-delay:0s;background:#002855;}
-.floating-shape:nth-child(2){top:30%; left:80%; width:40px; height:40px; animation-delay:3s;background:#0056b3;}
-.floating-shape:nth-child(3){top:70%; left:20%; width:50px; height:50px; animation-delay:5s;background:#ffd700;}
-.floating-shape:nth-child(4){top:50%; left:60%; width:70px; height:70px; animation-delay:7s;background:#00bfff;}
 
 /* Navbar */
 nav{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.95);padding:10px 20px;border-radius:30px;z-index:1000;display:flex;align-items:center;justify-content:center;}
@@ -57,7 +48,7 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
 .section-header{font-size:2rem;font-weight:bold;color:#002855;margin-bottom:2rem;}
 
 /* About */
-#about{background:linear-gradient(135deg,#002855,#0056b3);color:#fff;padding-top:120px;}
+#about{color:#fff;padding-top:120px;}
 #about img{width:160px;height:160px;border-radius:50%;margin-bottom:20px;border:4px solid #fff;object-fit:cover;}
 #about h1{font-size:2.8rem;}
 #about h2{font-size:1.5rem;font-weight:normal;}
@@ -95,11 +86,7 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
 </head>
 <body>
 
-<!-- Floating shapes -->
-<div class="floating-shape"></div>
-<div class="floating-shape"></div>
-<div class="floating-shape"></div>
-<div class="floating-shape"></div>
+<div class="floating-ball"></div>
 
 <!-- Navbar -->
 <nav>
@@ -216,7 +203,6 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
   <div class="section-header">Projects</div>
   <div class="section-content">
 
-    <!-- Maven Coffee Project -->
     <div class="project-card">
       <img src="https://framerusercontent.com/images/15i6kQnBC2OMFHYFXyPnrzg0gGU.jpg" alt="Maven Coffee Shop Analysis">
       <h3>Maven Coffee Shop Sales Analysis</h3>
@@ -225,7 +211,6 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
       <a href="https://github.com/rishabhkant21/Maven_Coffee_Sales_Analysis" target="_blank">View Project</a>
     </div>
 
-    <!-- Blinkit Dashboard Project -->
     <div class="project-card">
       <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/68a9a3d5-ad8e-41e4-840f-8de8e3559989_1200x675.jpeg" alt="Blinkit Dashboard">
       <h3>Blinkit Sales Analytics Dashboard</h3>
@@ -234,7 +219,6 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
       <a href="https://github.com/rishabhkant21/Blinkit_Dashboard" target="_blank">View Project</a>
     </div>
 
-    <!-- Supermarket Sales EDA Project -->
     <div class="project-card">
       <img src="https://cdn.foodism.co.uk/featured_image/5d4400165b52d.jpeg" alt="Supermarket Sales EDA">
       <h3>Supermarket Sales Exploratory Data Analysis (EDA)</h3>
