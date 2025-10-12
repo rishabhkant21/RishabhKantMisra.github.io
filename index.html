@@ -6,27 +6,45 @@
 <title>Rishabh Kant Misra | Portfolio</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:'Arial',sans-serif;overflow-x:hidden;padding-top:80px;color:#222;position:relative;}
+body{font-family:'Arial',sans-serif;padding-top:80px;color:#222;position:relative;overflow-x:hidden;background:linear-gradient(135deg,#002855,#0056b3);}
 
-/* Background gradient */
-body{background:linear-gradient(135deg,#002855,#0056b3);}
-
-/* Floating ball */
-.floating-ball{
+/* Floating shapes container */
+#shapes{
   position:fixed;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.1);
-  top:20%;
-  left:50%;
-  transform:translate(-50%,0);
-  animation:float 8s ease-in-out infinite alternate;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
   z-index:-1;
 }
+.shape{
+  position:absolute;
+  opacity:0.15;
+  border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  animation:float 10s linear infinite;
+}
+.shape.triangle{
+  width:0;height:0;
+  border-left:30px solid transparent;
+  border-right:30px solid transparent;
+  border-bottom:50px solid rgba(255,255,255,0.2);
+  background:none;
+  border-radius:0;
+}
+.shape.square{width:40px;height:40px;background:rgba(255,255,255,0.15);}
+.shape.circle{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.2);}
+.shape.hexagon{
+  width:60px;height:34.64px;
+  background:rgba(255,255,255,0.15);
+  clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+}
 @keyframes float{
-  0%{transform:translate(-50%,0);}
-  100%{transform:translate(-50%,30px);}
+  0%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-20px) rotate(180deg);}
+  100%{transform:translateY(0) rotate(360deg);}
 }
 
 /* Navbar */
@@ -86,7 +104,7 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
 </head>
 <body>
 
-<div class="floating-ball"></div>
+<div id="shapes"></div>
 
 <!-- Navbar -->
 <nav>
@@ -202,15 +220,13 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
 <section id="projects">
   <div class="section-header">Projects</div>
   <div class="section-content">
-
     <div class="project-card">
-      <img src="https://framerusercontent.com/images/15i6kQnBC2OMFHYFXyPnrzg0gGU.jpg" alt="Maven Coffee Shop Analysis">
+      <img src="https://framerusercontent.com/images/15i6kQnBC2OMFHYFXyPnrzg0gGU.jpg" alt="Maven Coffee Shop Sales Analysis">
       <h3>Maven Coffee Shop Sales Analysis</h3>
       <p>Performed an advanced SQL analysis of Maven Coffee Shop sales data to uncover revenue trends, peak transaction times, top-selling products, and store-wise performance for data-driven decision-making.</p>
       <p><strong>Tools:</strong> Advanced SQL, Excel</p>
-      <a href="https://github.com/rishabhkant21/Maven_Coffee_Sales_Analysis" target="_blank">View Project</a>
+      <a href="https://github.com/rishabhkant21/Maven_Coffee_Project" target="_blank">View Project</a>
     </div>
-
     <div class="project-card">
       <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/68a9a3d5-ad8e-41e4-840f-8de8e3559989_1200x675.jpeg" alt="Blinkit Dashboard">
       <h3>Blinkit Sales Analytics Dashboard</h3>
@@ -218,7 +234,6 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
       <p><strong>Tools:</strong> Power BI, Excel, Data Analytics</p>
       <a href="https://github.com/rishabhkant21/Blinkit_Dashboard" target="_blank">View Project</a>
     </div>
-
     <div class="project-card">
       <img src="https://cdn.foodism.co.uk/featured_image/5d4400165b52d.jpeg" alt="Supermarket Sales EDA">
       <h3>Supermarket Sales Exploratory Data Analysis (EDA)</h3>
@@ -226,19 +241,36 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
       <p><strong>Tools:</strong> Python, pandas, numpy, seaborn, matplotlib, ydata_profiling, Jupyter Notebook</p>
       <a href="https://github.com/rishabhkant21/EDA_Supermarket_Sales" target="_blank">View Project</a>
     </div>
-
   </div>
 </section>
 
 </div>
 
 <script>
-const hamburger=document.getElementById('hamburger');
-const navLinks=document.getElementById('navLinks');
-const links=navLinks.querySelectorAll('a');
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const links = navLinks.querySelectorAll('a');
+hamburger.addEventListener('click', () => { navLinks.classList.toggle('show'); });
+links.forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('show'); }); });
 
-hamburger.addEventListener('click',()=>{navLinks.classList.toggle('show');});
-links.forEach(link=>{link.addEventListener('click',()=>{navLinks.classList.remove('show');});});
+// Floating shapes generator
+const shapesContainer = document.getElementById('shapes');
+const shapeTypes = ['circle','square','triangle','hexagon'];
+const numShapes = 30;
+
+for(let i=0;i<numShapes;i++){
+  const shape = document.createElement('div');
+  const type = shapeTypes[Math.floor(Math.random()*shapeTypes.length)];
+  shape.classList.add('shape',type);
+  shape.style.top=Math.random()*100+'%';
+  shape.style.left=Math.random()*100+'%';
+  shape.style.width=(20+Math.random()*60)+'px';
+  shape.style.height=(20+Math.random()*60)+'px';
+  shape.style.animationDuration=(5+Math.random()*15)+'s';
+  shape.style.opacity=0.05+Math.random()*0.2;
+  shapesContainer.appendChild(shape);
+}
 </script>
 
 </body>
