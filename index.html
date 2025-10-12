@@ -8,7 +8,7 @@
     * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
     body { font-family:'Arial',sans-serif; padding-top:80px; color:#222; position:relative; overflow-x:hidden; background:#f7f7f7; }
     #shapes { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0; }
-    .shape { position:absolute; opacity:0.5; animation:float linear infinite; filter: drop-shadow(0 0 10px rgba(0,0,0,0.1)); }
+    .shape { position:absolute; opacity:0.65; animation:float linear infinite; filter: drop-shadow(0 0 10px rgba(0,0,0,0.1)); }
     .shape.triangle { width:0; height:0; }
     .shape.circle { border-radius:50%; }
     .shape.hexagon { clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); }
@@ -38,7 +38,7 @@
       position:relative;
       text-align:center;
       z-index:1;
-      background: rgba(255,255,255,0.85); /* Slightly transparent background */
+      background: rgba(255,255,255,0.85);
     }
     .section-header { font-size:2rem; font-weight:bold; color:#002855; margin-bottom:2rem; }
     #about { color:#222; padding-top:40px; }
@@ -222,7 +222,7 @@
           link.addEventListener("click", () => navLinks.classList.remove("show"));
         });
       }
-      // Generate random shapes
+      // Generate random shapes - now with higher opacity
       const shapesContainer = document.getElementById("shapes");
       if(shapesContainer){
         const colors = ["#FFD700","#FF5733","#33FF57","#3357FF","#FF33A8","#33FFF2"];
@@ -248,7 +248,7 @@
           shape.style.left=Math.random()*100+"%";
           shape.style.top=Math.random()*100+"%";
           shape.style.animationDuration=(Math.random()*10+5)+"s";
-          shape.style.opacity=Math.random()*0.3+0.2;
+          shape.style.opacity=Math.random()*0.3+0.45; // From 0.45 to 0.75
           shapesContainer.appendChild(shape);
         }
       }
