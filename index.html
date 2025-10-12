@@ -6,7 +6,7 @@
 <title>Rishabh Kant Misra | Portfolio</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:'Arial',sans-serif;padding-top:80px;color:#222;position:relative;overflow-x:hidden;background:linear-gradient(135deg,#002855,#0056b3);}
+body{font-family:'Arial',sans-serif;padding-top:80px;color:#222;position:relative;overflow-x:hidden;background:#f7f7f7;}
 
 /* Floating shapes container */
 #shapes{
@@ -21,29 +21,28 @@ body{font-family:'Arial',sans-serif;padding-top:80px;color:#222;position:relativ
 }
 .shape{
   position:absolute;
-  opacity:0.15;
-  border-radius:50%;
-  background:rgba(255,255,255,0.2);
-  animation:float 10s linear infinite;
+  animation:float linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
 }
 .shape.triangle{
   width:0;height:0;
-  border-left:30px solid transparent;
-  border-right:30px solid transparent;
-  border-bottom:50px solid rgba(255,255,255,0.2);
+  border-left:40px solid transparent;
+  border-right:40px solid transparent;
+  border-bottom:60px solid rgba(0,128,255,0.25);
   background:none;
   border-radius:0;
 }
-.shape.square{width:40px;height:40px;background:rgba(255,255,255,0.15);}
-.shape.circle{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.2);}
+.shape.square{background:rgba(0,128,255,0.25);}
+.shape.circle{border-radius:50%;background:rgba(0,128,255,0.25);}
 .shape.hexagon{
-  width:60px;height:34.64px;
-  background:rgba(255,255,255,0.15);
+  width:80px;height:46.19px;
+  background:rgba(0,128,255,0.25);
   clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
 }
+
 @keyframes float{
   0%{transform:translateY(0) rotate(0deg);}
-  50%{transform:translateY(-20px) rotate(180deg);}
+  50%{transform:translateY(-50px) rotate(180deg);}
   100%{transform:translateY(0) rotate(360deg);}
 }
 
@@ -66,7 +65,7 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
 .section-header{font-size:2rem;font-weight:bold;color:#002855;margin-bottom:2rem;}
 
 /* About */
-#about{color:#fff;padding-top:120px;}
+#about{background:linear-gradient(135deg,#002855,#0056b3);color:#fff;padding-top:120px;}
 #about img{width:160px;height:160px;border-radius:50%;margin-bottom:20px;border:4px solid #fff;object-fit:cover;}
 #about h1{font-size:2.8rem;}
 #about h2{font-size:1.5rem;font-weight:normal;}
@@ -237,9 +236,9 @@ section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-it
     <div class="project-card">
       <img src="https://cdn.foodism.co.uk/featured_image/5d4400165b52d.jpeg" alt="Supermarket Sales EDA">
       <h3>Supermarket Sales Exploratory Data Analysis (EDA)</h3>
-      <p>This project performs a comprehensive exploratory data analysis (EDA) on a supermarket sales dataset to uncover key insights into sales patterns, customer behavior, and product performance, helping optimize inventory, marketing, and customer satisfaction.</p>
-      <p><strong>Tools:</strong> Python, pandas, numpy, seaborn, matplotlib, ydata_profiling, Jupyter Notebook</p>
-      <a href="https://github.com/rishabhkant21/EDA_Supermarket_Sales" target="_blank">View Project</a>
+      <p>Conducted EDA to understand sales, product popularity, seasonal trends, and regional variations for strategic planning.</p>
+      <p><strong>Tools:</strong> Python, Pandas, Matplotlib</p>
+      <a href="https://github.com/rishabhkant21/Supermarket_EDA" target="_blank">View Project</a>
     </div>
   </div>
 </section>
@@ -263,13 +262,24 @@ for(let i=0;i<numShapes;i++){
   const shape = document.createElement('div');
   const type = shapeTypes[Math.floor(Math.random()*shapeTypes.length)];
   shape.classList.add('shape',type);
-  shape.style.top=Math.random()*100+'%';
-  shape.style.left=Math.random()*100+'%';
-  shape.style.width=(20+Math.random()*60)+'px';
-  shape.style.height=(20+Math.random()*60)+'px';
-  shape.style.animationDuration=(5+Math.random()*15)+'s';
-  shape.style.opacity=0.05+Math.random()*0.2;
+
+  // Random start positions
+  shape.style.top = Math.random()*100+'%';
+  shape.style.left = Math.random()*100+'%';
+
+  // Random size
+  let size = 40 + Math.random()*120;
+  if(type==='triangle'){shape.style.borderLeft = (size/2)+'px solid transparent'; shape.style.borderRight = (size/2)+'px solid transparent'; shape.style.borderBottom = (size*1.5)+'px solid rgba(0,128,255,'+(0.1+Math.random()*0.3)+')';}
+  else{shape.style.width = size+'px'; shape.style.height = size+'px'; shape.style.background = `rgba(0,128,255,${0.1+Math.random()*0.3})`; if(type==='hexagon') shape.style.clipPath='polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)';}
+
+  // Random animation duration and delay
+  shape.style.animationDuration = (10 + Math.random()*20)+'s';
+  shape.style.animationDelay = (Math.random()*5)+'s';
   shapesContainer.appendChild(shape);
+
+  // Random horizontal drift
+  const drift = (Math.random()*40)-20;
+  shape.animate([{transform:`translateX(0px)`},{transform:`translateX(${drift}px)`}],{duration:(10000+Math.random()*10000),iterations:Infinity,direction:'alternate'});
 }
 </script>
 
