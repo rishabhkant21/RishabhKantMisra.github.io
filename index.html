@@ -60,9 +60,9 @@ nav a:hover{background:#0056b3;}
 section{width:100%;padding:80px 20px;display:flex;flex-direction:column;align-items:center;position:relative;text-align:center;z-index:1;}
 .section-header{font-size:2rem;font-weight:bold;color:#002855;margin-bottom:2rem;}
 
-/* About */
-#about{background:linear-gradient(135deg,#002855,#0056b3);color:#fff;padding-top:120px;}
-#about img{width:160px;height:160px;border-radius:50%;margin-bottom:20px;border:4px solid #fff;object-fit:cover;}
+/* About Section (no blue background now) */
+#about{color:#222;padding-top:40px;background:#f7f7f7;}
+#about img{width:160px;height:160px;border-radius:50%;margin-bottom:20px;border:4px solid #002855;object-fit:cover;}
 #about h1{font-size:2.8rem;}
 #about h2{font-size:1.5rem;font-weight:normal;}
 #about p{font-size:1.1rem;max-width:700px;line-height:1.5;}
@@ -254,13 +254,14 @@ for(let i=0;i<40;i++){
   const shape = document.createElement("div");
   const size = Math.random()*60+20;
   shape.classList.add("shape");
-  shape.classList.add(types[Math.floor(Math.random()*types.length)]);
+  const type = types[Math.floor(Math.random()*types.length)];
+  shape.classList.add(type);
   shape.style.width=size+"px";
   shape.style.height=size+"px";
   shape.style.left=Math.random()*100+"%";
   shape.style.top=Math.random()*100+"%";
-  shape.style.backgroundColor=types.includes("triangle")?"transparent":colors[Math.floor(Math.random()*colors.length)];
-  if(shape.classList.contains("triangle")){
+  shape.style.backgroundColor=(type==="triangle")?"transparent":colors[Math.floor(Math.random()*colors.length)];
+  if(type==="triangle"){
     shape.style.borderBottom=size+"px solid "+colors[Math.floor(Math.random()*colors.length)];
   }
   shape.style.animationDuration=(Math.random()*10+5)+"s";
