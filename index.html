@@ -1,144 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rishabh Kant Misra | Portfolio</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-    body { font-family:'Arial',sans-serif; padding-top:80px; color:#222; position:relative; overflow-x:hidden; background:#f7f7f7; }
-    #shapes { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0; }
-    .shape { position:absolute; opacity:0.85; animation:float linear infinite; filter: drop-shadow(0 0 10px rgba(0,0,0,0.1)); }
-    .shape.triangle { width:0; height:0; }
-    .shape.circle { border-radius:50%; }
-    .shape.hexagon { clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); }
-    @keyframes float {
-      0% { transform:translateY(0) rotate(0deg);}
-      50% { transform:translateY(-50px) rotate(180deg);}
-      100% { transform:translateY(0) rotate(360deg);}
-    }
-    nav { position:fixed; top:10px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.95); padding:10px 20px; border-radius:30px; z-index:1001; display:flex; align-items:center; justify-content:center; }
-    .nav-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
-    nav a { padding:8px 15px; background:#002855; color:#fff; border-radius:20px; font-weight:bold; transition:0.3s; white-space:nowrap; text-decoration:none; }
-    nav a:hover { background:#0056b3; }
-    .hamburger { display:none; flex-direction:column; cursor:pointer; margin-left:15px; z-index:1002; }
-    .hamburger div { width:25px; height:3px; background:#002855; margin:4px 0; transition:0.4s; }
-    @media(max-width:600px){
-      nav { width:90%; justify-content:space-between; border-radius:20px; }
-      .nav-links { position:absolute; top:60px; left:0; right:0; background:rgba(255,255,255,0.95); flex-direction:column; align-items:center; display:none; margin:0 auto; padding:10px 0; width:100%; gap:10px; border-radius:10px; }
-      .nav-links.show { display:flex; }
-      .hamburger { display:flex; }
-    }
-    section {
-      width:100%;
-      padding:80px 20px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      position:relative;
-      text-align:center;
-      z-index:1;
-      background: rgba(255,255,255,0.85);
-    }
-    .section-header { font-size:2rem; font-weight:bold; color:#002855; margin-bottom:2rem; }
-    #about { color:#222; padding-top:40px; }
-    #about h1 { font-size:2.8rem; }
-    #about h2 { font-size:1.5rem; font-weight:normal; margin-bottom:25px; } /* added spacing here */
-    #about p { font-size:1.1rem; max-width:700px; line-height:1.5; }
-    #contact-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
-    #contact-links a { padding:8px 15px; border-radius:20px; background:#ffd700; color:#002855; font-weight:bold; transition:0.3s; text-decoration:none; }
-    #contact-links a:hover { background:#ffbf00; }
-    #experience .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
-    #experience .job { background:#f0f0f0; padding:20px; border-radius:15px; display:flex; gap:15px; flex:1 1 300px; min-width:280px; transition:transform 0.3s; align-items:flex-start; }
-    #experience .job:hover { transform:translateY(-5px); box-shadow:0 5px 20px rgba(0,0,0,0.2); }
-    #experience .job img { width:60px; height:60px; object-fit:contain; border-radius:5px; }
-    #experience .job div h3 { font-size:1.2rem; margin-bottom:5px; }
-    #experience .job div h4 { font-weight:normal; font-size:1rem; color:#555; margin-bottom:10px; }
-    #experience .job div ul { padding-left:20px; text-align:left; }
-    #certifications .cert-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:900px; }
-    #certifications .cert { display:flex; align-items:center; gap:15px; background:#fff; padding:10px 15px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); min-width:250px; flex:1; }
-    #certifications .cert img { width:50px; height:50px; border-radius:10px; object-fit:cover; }
-    #certifications .cert span { font-size:1rem; font-weight:bold; }
-    #projects .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
-    #projects .project-card { display:flex; flex-direction:column; align-items:center; background:#f0f0f0; border-radius:15px; padding:20px; max-width:400px; text-align:center; transition:transform 0.3s; }
-    #projects .project-card:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
-    #projects .project-card img { max-width:200px; margin-bottom:15px; border-radius:10px; object-fit:cover; }
-    #projects .project-card a { margin-top:10px; display:inline-block; padding:8px 15px; background:#002855; color:#fff; border-radius:20px; text-decoration:none; transition:0.3s; }
-    #projects .project-card a:hover { background:#0056b3; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rishabh Kant Misra | Portfolio</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body { font-family:'Arial',sans-serif; padding-top:80px; color:#222; position:relative; overflow-x:hidden; background:#f7f7f7; }
+    #shapes { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0; }
+    .shape { position:absolute; opacity:0.85; animation:float linear infinite; filter: drop-shadow(0 0 10px rgba(0,0,0,0.1)); }
+    .shape.triangle { width:0; height:0; }
+    .shape.circle { border-radius:50%; }
+    .shape.hexagon { clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); }
+    @keyframes float {
+      0% { transform:translateY(0) rotate(0deg);}
+      50% { transform:translateY(-50px) rotate(180deg);}
+      100% { transform:translateY(0) rotate(360deg);}
+    }
+    nav { position:fixed; top:10px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.95); padding:10px 20px; border-radius:30px; z-index:1001; display:flex; align-items:center; justify-content:center; }
+    .nav-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
+    nav a { padding:8px 15px; background:#002855; color:#fff; border-radius:20px; font-weight:bold; transition:0.3s; white-space:nowrap; text-decoration:none; }
+    nav a:hover { background:#0056b3; }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; margin-left:15px; z-index:1002; }
+    .hamburger div { width:25px; height:3px; background:#002855; margin:4px 0; transition:0.4s; }
+    @media(max-width:600px){
+      nav { width:90%; justify-content:space-between; border-radius:20px; }
+      .nav-links { position:absolute; top:60px; left:0; right:0; background:rgba(255,255,255,0.95); flex-direction:column; align-items:center; display:none; margin:0 auto; padding:10px 0; width:100%; gap:10px; border-radius:10px; }
+      .nav-links.show { display:flex; }
+      .hamburger { display:flex; }
+    }
+    section {
+      width:100%;
+      padding:80px 20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+      text-align:center;
+      z-index:1;
+      background: rgba(255,255,255,0.85);
+    }
+    .section-header { font-size:2rem; font-weight:bold; color:#002855; margin-bottom:2rem; }
+    #about { color:#222; padding-top:40px; }
+    #about img { width:160px; height:160px; border-radius:50%; margin-bottom:20px; border:4px solid #002855; object-fit:cover; }
+    #about h1 { font-size:2.8rem; }
+    #about h2 { font-size:1.5rem; font-weight:normal; }
+    #about p { font-size:1.1rem; max-width:700px; line-height:1.5; }
+    #contact-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
+    #contact-links a { padding:8px 15px; border-radius:20px; background:#ffd700; color:#002855; font-weight:bold; transition:0.3s; text-decoration:none; }
+    #contact-links a:hover { background:#ffbf00; }
+    #experience .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+    #experience .job { background:#f0f0f0; padding:20px; border-radius:15px; display:flex; gap:15px; flex:1 1 300px; min-width:280px; transition:transform 0.3s; align-items:flex-start; }
+    #experience .job:hover { transform:translateY(-5px); box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+    #experience .job img { width:60px; height:60px; object-fit:contain; border-radius:5px; }
+    #experience .job div h3 { font-size:1.2rem; margin-bottom:5px; }
+    #experience .job div h4 { font-weight:normal; font-size:1rem; color:#555; margin-bottom:10px; }
+    #experience .job div ul { padding-left:20px; text-align:left; }
+    #certifications .cert-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:900px; }
+    #certifications .cert { display:flex; align-items:center; gap:15px; background:#fff; padding:10px 15px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); min-width:250px; flex:1; }
+    #certifications .cert img { width:50px; height:50px; border-radius:10px; object-fit:cover; }
+    #certifications .cert span { font-size:1rem; font-weight:bold; }
+    #projects .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+    #projects .project-card { display:flex; flex-direction:column; align-items:center; background:#f0f0f0; border-radius:15px; padding:20px; max-width:400px; text-align:center; transition:transform 0.3s; }
+    #projects .project-card:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+    #projects .project-card img { max-width:200px; margin-bottom:15px; border-radius:10px; object-fit:cover; }
+    #projects .project-card a { margin-top:10px; display:inline-block; padding:8px 15px; background:#002855; color:#fff; border-radius:20px; text-decoration:none; transition:0.3s; }
+    #projects .project-card a:hover { background:#0056b3; }
+  </style>
 </head>
 <body>
 
-  <div id="shapes" aria-hidden="true"></div>
+  <div id="shapes" aria-hidden="true"></div>
 
-  <nav aria-label="Main Navigation">
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#experience">Professional Experience</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#projects">Projects</a>
-    </div>
-    <div class="hamburger" id="hamburger" aria-label="Open menu" tabindex="0">
-      <div></div><div></div><div></div>
-    </div>
-  </nav>
+  <nav aria-label="Main Navigation">
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Professional Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+    </div>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" tabindex="0">
+      <div></div><div></div><div></div>
+    </div>
+  </nav>
 
-  <div class="sections">
+  <div class="sections">
 
-    <!-- About Section -->
-    <section id="about">
-      <h1>Rishabh Kant Misra</h1>
-      <h2>Data Analytics Professional</h2>
-      <p>I am a data enthusiast proficient in Excel, Power BI, SQL, and Python. I enjoy analyzing and visualizing data to extract actionable insights and drive informed business decisions.</p>
-      <div id="contact-links">
-        <a href="https://www.linkedin.com/in/rishabhkantmisra/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/rishabhkant21" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </section>
+    <!-- About Section -->
+    <section id="about">
+      <img src="https://media.licdn.com/dms/image/v2/D5603AQEHCpKIlGmzww/profile-displayphoto-shrink_800_800/B56ZUKEOxAHoAc-/0/1739630638461?e=1761177600&v=beta&t=IDdWzKodisH7Ga3zPFchqp8pNr0n-W1qjJLCcscwwkY" alt="Rishabh Kant Misra Portrait">
+      <h1>Rishabh Kant Misra</h1>
+      <h2>Data Analytics Professional</h2>
+      <p>I am a data enthusiast proficient in Excel, Power BI, SQL, and Python. I enjoy analyzing and visualizing data to extract actionable insights and drive informed business decisions.</p>
+      <div id="contact-links">
+        <a href="https://www.linkedin.com/in/rishabhkantmisra/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/rishabhkant21" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
 
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="section-header">Professional Experience</div>
+      <div class="section-content">
+        <div class="job">
+          <img src="https://www.ashvinautoparts.com/wp-content/uploads/2021/05/interface-microsystems-squarelogo-1534414592559-1.png" alt="Interface Microsystems Logo">
+          <div>
+            <h3>Senior Executive – Interface Microsystems</h3>
+            <h4>May 2025 – Present | Gurugram, India</h4>
+            <ul>
+              <li>Streamlined procurement, reducing lead time by 15%.</li>
+              <li>Implemented vendor consolidation strategies, saving 12% annually.</li>
+              <li>Managed end-of-life components to ensure production continuity.</li>
+              <li>Created procurement dashboards for data-driven decisions.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <img src="https://www.ashvinautoparts.com/wp-content/uploads/2021/05/interface-microsystems-squarelogo-1534414592559-1.png" alt="Interface Microsystems Logo">
+          <div>
+            <h3>Management Trainee – Interface Microsystems</h3>
+            <h4>May 2024 – May 2025 | Gurugram, India</h4>
+            <ul>
+              <li>Assisted in procurement and supplier evaluation.</li>
+              <li>Monitored material usage; prepared weekly dashboards.</li>
+              <li>Supported inventory optimization and cost reduction.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <img src="https://dailycompanynews.com/wp-content/uploads/2021/10/GEP-Featured.png" alt="GEP Worldwide Logo">
+          <div>
+            <h3>Intern – Knowledge Services, GEP Worldwide</h3>
+            <h4>May 2023 – Jul 2023 | Gurugram, India</h4>
+            <ul>
+              <li>Analyzed supplier data to optimize spend.</li>
+              <li>Prepared procurement trend reports.</li>
+              <li>Collaborated with teams for cost-saving opportunities.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- Certifications Section -->
+    <section id="certifications">
+      <div class="section-header">Certifications</div>
+      <div class="cert-grid">
+        <div class="cert">
+          <img src="https://maven-uploads.s3.amazonaws.com/avatars/158609840/Helen-Companioni-1681431825915.jpeg" alt="Maven Analytics Logo">
+          <span>SQL for Data Analysis: Advanced SQL Querying Techniques – Maven Analytics (2025)</span>
+        </div>
+        <div class="cert">
+          <img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2022/01/Fractal.jpg" alt="Fractal Analytics Logo">
+          <span>Data Analysis using SQL – Fractal Analytics (2025)</span>
+        </div>
+        <div class="cert">
+          <img src="https://www.pngmart.com/files/4/Microsoft-Logo-PNG-Photos.png" alt="IBM Logo">
+          <span>Databases and SQL for Data Science and AI – IBM (2024)</span>
+        </div>
+        <div class="cert">
+          <img src="https://www.pngmart.com/files/4/Microsoft-Logo-PNG-Photos.png" alt="IBM Logo">
+          <span>Data Analysis with Python – IBM (2024)</span>
+        </div>
+        <div class="cert">
+          <img src="https://static.wixstatic.com/media/b5da4e_ec7714edd9f44e9a8b2ff2ce88736bfc~mv2.png" alt="Six Sigma Logo">
+          <span>Lean Six Sigma Green Belt – Six Sigma Academy Amsterdam (2023)</span>
+        </div>
+        <div class="cert">
+          <img src="https://www.pngmart.com/files/4/Microsoft-Logo-PNG-Photos.png" alt="Microsoft / LinkedIn Logo">
+          <span>Career Essentials in Data Analytics – Microsoft & LinkedIn (2023)</span>
+        </div>
+        <div class="cert">
+          <img src="https://scminsight.com/wp-content/uploads/2023/09/Council-of-Supply-Chain-Management-Professionals-CSCMP.jpg" alt="CSCMP Logo">
+          <span>Supply Chain Foundations – CSCMP (2023)</span>
+        </div>
+        <div class="cert">
+          <img src="https://scminsight.com/wp-content/uploads/2023/09/Council-of-Supply-Chain-Management-Professionals-CSCMP.jpg" alt="CSCMP Logo">
+          <span>Demand Planning Professional Certificate – CSCMP (2023)</span>
+        </div>
+      </div>
+    </section>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const hamburger = document.getElementById("hamburger");
-      const navLinks = document.getElementById("navLinks");
-      if(hamburger && navLinks){
-        hamburger.addEventListener("click", () => navLinks.classList.toggle("show"));
-        navLinks.querySelectorAll("a").forEach(link => {
-          link.addEventListener("click", () => navLinks.classList.remove("show"));
-        });
-      }
-      const shapesContainer = document.getElementById("shapes");
-      if(shapesContainer){
-        const colors = ["#FFD700","#FF5733","#33FF57","#3357FF","#FF33A8","#33FFF2"];
-        const types = ["circle","square","triangle","hexagon"];
-        for(let i=0;i<80;i++){
-          const shape = document.createElement("div");
-          const size = Math.random()*60+20;
-          shape.classList.add("shape");
-          const type = types[Math.floor(Math.random()*types.length)];
-          shape.classList.add(type);
-          if(type==="triangle"){
-            shape.style.backgroundColor="transparent";
-            shape.style.borderLeft=(size/2)+"px solid transparent";
-            shape.style.borderRight=(size/2)+"px solid transparent";
-            shape.style.borderBottom=size+"px solid "+colors[Math.floor(Math.random()*colors.length)];
-            shape.style.width="0";
-            shape.style.height="0";
-          } else {
-            shape.style.width=size+"px";
-            shape.style.height=size+"px";
-            shape.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
-          }
-          shape.style.left=Math.random()*100+"%";
-          shape.style.top=Math.random()*100+"%";
-          shape.style.animationDuration=(Math.random()*10+5)+"s";
-          shape.style.opacity=Math.random()*0.2+0.7;
-          shapesContainer.appendChild(shape);
-        }
-      }
-    });
-  </script>
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="section-header">Projects</div>
+      <div class="section-content">
+        <div class="project-card">
+          <img src="https://framerusercontent.com/images/15i6kQnBC2OMFHYFXyPnrzg0gGU.jpg" alt="Maven Coffee Shop Sales Analysis Project Screenshot">
+          <h3>Maven Coffee Shop Sales Analysis</h3>
+          <p>Performed an advanced SQL analysis of Maven Coffee Shop sales data to uncover revenue trends, peak transaction times, top-selling products, and store-wise performance for data-driven decision-making.</p>
+          <p><strong>Tools:</strong> Advanced SQL, Excel</p>
+          <a href="https://github.com/rishabhkant21/maven_coffee_sales_analysis" target="_blank" rel="noopener">View Project</a>
+        </div>
+        <div class="project-card">
+          <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/68a9a3d5-ad8e-41e4-840f-8de8e3559989_1200x675.jpeg" alt="Blinkit Dashboard">
+          <h3>Blinkit Sales Analytics Dashboard</h3>
+          <p>An interactive Power BI dashboard providing sales, outlet, and customer insights for Blinkit.</p>
+          <p><strong>Tools:</strong> Power BI, Excel, Data Analytics</p>
+          <a href="https://github.com/rishabhkant21/Blinkit_Dashboard" target="_blank" rel="noopener">View Project</a>
+        </div>
+        <div class="project-card">
+          <img src="https://cdn.foodism.co.uk/featured_image/5d4400165b52d.jpeg" alt="Supermarket Sales EDA Project Screenshot">
+          <h3>Supermarket Sales Exploratory Data Analysis (EDA)</h3>
+          <p>This project performs a comprehensive exploratory data analysis (EDA) on a supermarket sales dataset to uncover key insights into sales patterns, customer behavior, and product performance, helping optimize business strategy.</p>
+          <p><strong>Tools:</strong> Python, Pandas, Matplotlib</p>
+          <a href="https://github.com/rishabhkant21/EDA_Supermarket_Sales" target="_blank" rel="noopener">View Project</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Hamburger menu toggle
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if(hamburger && navLinks){
+        hamburger.addEventListener("click", () => navLinks.classList.toggle("show"));
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => navLinks.classList.remove("show"));
+        });
+      }
+      // Generate random shapes - more opaque, more count
+      const shapesContainer = document.getElementById("shapes");
+      if(shapesContainer){
+        const colors = ["#FFD700","#FF5733","#33FF57","#3357FF","#FF33A8","#33FFF2"];
+        const types = ["circle","square","triangle","hexagon"];
+        for(let i=0;i<80;i++){
+          const shape = document.createElement("div");
+          const size = Math.random()*60+20;
+          shape.classList.add("shape");
+          const type = types[Math.floor(Math.random()*types.length)];
+          shape.classList.add(type);
+          if(type==="triangle"){
+            shape.style.backgroundColor="transparent";
+            shape.style.borderLeft=(size/2)+"px solid transparent";
+            shape.style.borderRight=(size/2)+"px solid transparent";
+            shape.style.borderBottom=size+"px solid "+colors[Math.floor(Math.random()*colors.length)];
+            shape.style.width="0";
+            shape.style.height="0";
+          } else {
+            shape.style.width=size+"px";
+            shape.style.height=size+"px";
+            shape.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+          }
+          shape.style.left=Math.random()*100+"%";
+          shape.style.top=Math.random()*
+100+"%";
+          shape.style.animationDuration=(Math.random()*10+5)+"s";
+          shape.style.opacity=Math.random()*0.2+0.7; // From 0.7 to 0.9
+          shapesContainer.appendChild(shape);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
