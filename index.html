@@ -3,307 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rishabh Kant Misra - Portfolio</title>
+  <title>Rishabh Kant Misra | Portfolio</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #141E30, #243B55);
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(8px);
-      padding: 15px 40px;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      font-size: 1.8em;
-      font-weight: 600;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-    }
-
-    nav ul li {
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #00d4ff;
-    }
-
-    section {
-      padding: 100px 50px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    #home h2 {
-      font-size: 3.5em;
-      margin-bottom: 10px;
-    }
-
-    #home p {
-      font-size: 1.3em;
-      color: #bfc9d9;
-      max-width: 600px;
-    }
-
-    /* Medium gap after name and description */
-    #home .hero-content {
-      margin-bottom: 100px;
-    }
-
-    .animated-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 15s infinite ease-in-out;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body { font-family:'Arial',sans-serif; padding-top:80px; color:#222; position:relative; overflow-x:hidden; background:#f7f7f7; }
+    #shapes { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0; }
+    .shape { position:absolute; opacity:0.85; animation:float linear infinite; filter: drop-shadow(0 0 10px rgba(0,0,0,0.1)); }
+    .shape.triangle { width:0; height:0; }
+    .shape.circle { border-radius:50%; }
+    .shape.hexagon { clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); }
     @keyframes float {
-      0% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-50px) scale(1.2); }
-      100% { transform: translateY(0px) scale(1); }
+      0% { transform:translateY(0) rotate(0deg);}
+      50% { transform:translateY(-50px) rotate(180deg);}
+      100% { transform:translateY(0) rotate(360deg);}
     }
-
-    section h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #00d4ff;
+    nav { position:fixed; top:10px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.95); padding:10px 20px; border-radius:30px; z-index:1001; display:flex; align-items:center; justify-content:center; }
+    .nav-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; }
+    nav a { padding:8px 15px; background:#002855; color:#fff; border-radius:20px; font-weight:bold; transition:0.3s; white-space:nowrap; text-decoration:none; }
+    nav a:hover { background:#0056b3; }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; margin-left:15px; z-index:1002; }
+    .hamburger div { width:25px; height:3px; background:#002855; margin:4px 0; transition:0.4s; }
+    @media(max-width:600px){
+      nav { width:90%; justify-content:space-between; border-radius:20px; }
+      .nav-links { position:absolute; top:60px; left:0; right:0; background:rgba(255,255,255,0.95); flex-direction:column; align-items:center; display:none; margin:0 auto; padding:10px 0; width:100%; gap:10px; border-radius:10px; }
+      .nav-links.show { display:flex; }
+      .hamburger { display:flex; }
     }
-
-    section p, section li {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #dce3f2;
-      max-width: 800px;
-      margin: auto;
+    section {
+      width:100%;
+      padding:80px 20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      position:relative;
+      text-align:center;
+      z-index:1;
+      background: rgba(255,255,255,0.85);
     }
-
-    .content-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 900px;
-      margin-top: 40px;
-    }
-
-    ul {
-      list-style: none;
-      text-align: left;
-    }
-
-    li {
-      margin: 10px 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9em;
-      color: #bfc9d9;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav ul {
-        flex-wrap: wrap;
-        padding-top: 10px;
-      }
-
-      #home h2 {
-        font-size: 2.5em;
-      }
-
-      #home p {
-        font-size: 1.1em;
-      }
-    }
+    .section-header { font-size:2rem; font-weight:bold; color:#002855; margin-bottom:2rem; }
+    #about { color:#222; padding-top:40px; }
+    #about h1 { font-size:2.8rem; }
+    #about h2 { font-size:1.5rem; font-weight:normal; margin-bottom:25px; } /* added spacing here */
+    #about p { font-size:1.1rem; max-width:700px; line-height:1.5; }
+    #contact-links { display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
+    #contact-links a { padding:8px 15px; border-radius:20px; background:#ffd700; color:#002855; font-weight:bold; transition:0.3s; text-decoration:none; }
+    #contact-links a:hover { background:#ffbf00; }
+    #experience .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+    #experience .job { background:#f0f0f0; padding:20px; border-radius:15px; display:flex; gap:15px; flex:1 1 300px; min-width:280px; transition:transform 0.3s; align-items:flex-start; }
+    #experience .job:hover { transform:translateY(-5px); box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+    #experience .job img { width:60px; height:60px; object-fit:contain; border-radius:5px; }
+    #experience .job div h3 { font-size:1.2rem; margin-bottom:5px; }
+    #experience .job div h4 { font-weight:normal; font-size:1rem; color:#555; margin-bottom:10px; }
+    #experience .job div ul { padding-left:20px; text-align:left; }
+    #certifications .cert-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; max-width:900px; }
+    #certifications .cert { display:flex; align-items:center; gap:15px; background:#fff; padding:10px 15px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); min-width:250px; flex:1; }
+    #certifications .cert img { width:50px; height:50px; border-radius:10px; object-fit:cover; }
+    #certifications .cert span { font-size:1rem; font-weight:bold; }
+    #projects .section-content { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+    #projects .project-card { display:flex; flex-direction:column; align-items:center; background:#f0f0f0; border-radius:15px; padding:20px; max-width:400px; text-align:center; transition:transform 0.3s; }
+    #projects .project-card:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+    #projects .project-card img { max-width:200px; margin-bottom:15px; border-radius:10px; object-fit:cover; }
+    #projects .project-card a { margin-top:10px; display:inline-block; padding:8px 15px; background:#002855; color:#fff; border-radius:20px; text-decoration:none; transition:0.3s; }
+    #projects .project-card a:hover { background:#0056b3; }
   </style>
 </head>
-
 <body>
-  <header>
-    <h1>Rishabh Kant Misra</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Home -->
-  <section id="home">
-    <div class="hero-content">
-      <h2>Rishabh Kant Misra</h2>
-      <p>Data Analyst | Python | SQL | Power BI | Machine Learning</p>
+  <div id="shapes" aria-hidden="true"></div>
+
+  <nav aria-label="Main Navigation">
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Professional Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
     </div>
-    <div class="animated-bg" id="shapes"></div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="content-box">
-      <p>
-        I am a passionate Data Analyst with strong analytical, problem-solving, and technical skills. 
-        I specialize in Python, SQL, Power BI, and Machine Learning, and I enjoy transforming data into actionable insights. 
-        I hold a B.Tech and MBA degree and am currently pursuing my law studies to understand the intersection of business, technology, and legal frameworks.
-      </p>
+    <div class="hamburger" id="hamburger" aria-label="Open menu" tabindex="0">
+      <div></div><div></div><div></div>
     </div>
-  </section>
+  </nav>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="content-box">
-      <ul>
-        <li>Python (Pandas, NumPy, Matplotlib, Scikit-learn)</li>
-        <li>SQL and Advanced Excel</li>
-        <li>Power BI Dashboard Development</li>
-        <li>Machine Learning & Data Visualization</li>
-        <li>Data Cleaning and Preprocessing</li>
-        <li>Business Analysis and Problem Solving</li>
-      </ul>
-    </div>
-  </section>
+  <div class="sections">
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="content-box">
-      <ul>
-        <li><strong>Bachelor of Technology (B.Tech)</strong> – Engineering background providing analytical foundation.</li>
-        <li><strong>Master of Business Administration (MBA)</strong> – Focused on Business Strategy & Analytics.</li>
-        <li><strong>Bachelor of Law (LLB)</strong> – Currently pursuing, exploring corporate and technology law.</li>
-      </ul>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about">
+      <h1>Rishabh Kant Misra</h1>
+      <h2>Data Analytics Professional</h2>
+      <p>I am a data enthusiast proficient in Excel, Power BI, SQL, and Python. I enjoy analyzing and visualizing data to extract actionable insights and drive informed business decisions.</p>
+      <div id="contact-links">
+        <a href="https://www.linkedin.com/in/rishabhkantmisra/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/rishabhkant21" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
 
-  <!-- Experience -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="content-box">
-      <ul>
-        <li><strong>Data Analyst Intern – AcmeTech</strong>  
-          <br>Worked on customer acquisition dashboards, data modeling, and XLOOKUP-based financial planning to improve decision-making.
-        </li>
-        <li><strong>Academic Projects</strong>  
-          <br>Performed data analysis on sales, finance, and retail datasets to uncover key business insights.
-        </li>
-      </ul>
-    </div>
-  </section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="content-box">
-      <ul>
-        <li><strong>Customer Acquisition Dashboard</strong> – Built a Power BI dashboard analyzing acquisition cost and ROI.</li>
-        <li><strong>Retail Sales Analysis (Maven Roasters)</strong> – Analyzed sales trends, product performance, and customer behavior using Python and Excel.</li>
-        <li><strong>Machine Learning Model</strong> – Built an ML model to predict spam messages using NLP techniques.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Certifications -->
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <div class="content-box">
-      <ul>
-        <li>Google Data Analytics Professional Certificate</li>
-        <li>Microsoft Power BI Data Analyst Associate</li>
-        <li>Python for Data Science (Coursera)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="content-box">
-      <p>Email: rishabhkantmisra@gmail.com</p>
-      <p>LinkedIn: <a href="#" style="color:#00d4ff;">linkedin.com/in/rishabhkantmisra</a></p>
-      <p>GitHub: <a href="#" style="color:#00d4ff;">github.com/rishabhkantmisra</a></p>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Rishabh Kant Misra. All Rights Reserved.
-  </footer>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if(hamburger && navLinks){
+        hamburger.addEventListener("click", () => navLinks.classList.toggle("show"));
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => navLinks.classList.remove("show"));
+        });
+      }
       const shapesContainer = document.getElementById("shapes");
-      const colors = ["#00d4ff", "#4d79ff", "#66ccff", "#99ffff"];
-      for (let i = 0; i < 15; i++) {
-        const shape = document.createElement("div");
-        shape.classList.add("shape");
-        const size = Math.random() * 80 + 30;
-        shape.style.width = size + "px";
-        shape.style.height = size + "px";
-        shape.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        shape.style.top = Math.random() * 100 + "%";
-        shape.style.left = Math.random() * 100 + "%";
-        shape.style.animationDuration = (Math.random() * 15 + 10) + "s";
-        shape.style.animationDelay = Math.random() * 5 + "s";
-        shapesContainer.appendChild(shape);
+      if(shapesContainer){
+        const colors = ["#FFD700","#FF5733","#33FF57","#3357FF","#FF33A8","#33FFF2"];
+        const types = ["circle","square","triangle","hexagon"];
+        for(let i=0;i<80;i++){
+          const shape = document.createElement("div");
+          const size = Math.random()*60+20;
+          shape.classList.add("shape");
+          const type = types[Math.floor(Math.random()*types.length)];
+          shape.classList.add(type);
+          if(type==="triangle"){
+            shape.style.backgroundColor="transparent";
+            shape.style.borderLeft=(size/2)+"px solid transparent";
+            shape.style.borderRight=(size/2)+"px solid transparent";
+            shape.style.borderBottom=size+"px solid "+colors[Math.floor(Math.random()*colors.length)];
+            shape.style.width="0";
+            shape.style.height="0";
+          } else {
+            shape.style.width=size+"px";
+            shape.style.height=size+"px";
+            shape.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+          }
+          shape.style.left=Math.random()*100+"%";
+          shape.style.top=Math.random()*100+"%";
+          shape.style.animationDuration=(Math.random()*10+5)+"s";
+          shape.style.opacity=Math.random()*0.2+0.7;
+          shapesContainer.appendChild(shape);
+        }
       }
     });
   </script>
