@@ -211,6 +211,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Hamburger menu toggle
       const hamburger = document.getElementById("hamburger");
       const navLinks = document.getElementById("navLinks");
       if(hamburger && navLinks){
@@ -219,6 +220,7 @@
           link.addEventListener("click", () => navLinks.classList.remove("show"));
         });
       }
+      // Generate random shapes
       const shapesContainer = document.getElementById("shapes");
       if(shapesContainer){
         const colors = ["#FFD700","#FF5733","#33FF57","#3357FF","#FF33A8","#33FFF2"];
@@ -241,4 +243,15 @@
             shape.style.height=size+"px";
             shape.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
           }
-          shape.style.left=Math.random()*
+          shape.style.top=Math.random()*100+"%";
+          shape.style.left=Math.random()*100+"%";
+          shape.style.animationDuration=(Math.random()*15+10)+"s";
+          shape.style.animationDelay=Math.random()*5+"s";
+          shapesContainer.appendChild(shape);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
